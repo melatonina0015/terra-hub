@@ -1,6 +1,8 @@
 
 # 🦎 Terra Hub
 
+![Next.js](https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white) ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white) ![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white) ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white) ![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-000000?style=for-the-badge&logo=shadcnui&logoColor=white)
+
 **Terra Hub** is a comprehensive management application for terrarium hobbyists. It helps keepers track their exotic pets (tarantulas, geckos, snakes), manage feeding schedules, and monitor life events like molting or vet visits.
 
 > **Project Status:** 🚧 Active Development (MVP Phase)
@@ -14,12 +16,12 @@ The goal is to translate my enterprise-level knowledge (Salesforce) into a moder
 
 ## Tech Stack
 
-- **Framework:** [Next.js 16](https://nextjs.org/) (App Router)
+- **Framework:** [Next.js 16](https://nextjs.org/)
 - **Language:** TypeScript
 - **Database:** PostgreSQL (running in Docker)
 - **ORM:** Prisma
 - **Validation:** Zod
-- **Styling:** Tailwind CSS
+- **Styling:** Tailwind CSS + shadcn/ui
 - **Containerization:** Docker & Docker Compose
 
 
