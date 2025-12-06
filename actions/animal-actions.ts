@@ -8,16 +8,18 @@ export type State = {
     errors?: {
         name?: string[];
         species?: string[];
+        animalId?: string[];
+        dueDate?: string[];
     };
     message?: string | null;
 };
 
 const FormDataValidation = z.object({
-    name: z.string().min(3, ),
+    name: z.string().min(3),
     species: z.string().min(3)
 })
 
-export const createAnimalAction = async (prevState: State, formData: FormData) : Promise<State> => {
+export const createAnimalAction = async (prevState: State, formData: FormData): Promise<State> => {
     const rawFormData = {
         name: formData.get("name"),
         species: formData.get("species")
@@ -35,8 +37,8 @@ export const createAnimalAction = async (prevState: State, formData: FormData) :
     try {
         await createAnimal(validationResult.data);
         revalidatePath("/");
-        return { message: "Dodano zwierzę!", errors: {} };
+        return {message: "Dodano zwierzę!", errors: {}};
     } catch (e) {
-        return { message: "Błąd bazy danych." };
+        return {message: "Błąd bazy danych."};
     }
 };

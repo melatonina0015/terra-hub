@@ -1,6 +1,7 @@
 import {db} from "@/lib/db";
 import {AnimalForm} from "@/components/animal-form";
 import FeedingForm from "@/components/feeding-form";
+import Link from "next/link";
 
 export default async function Home() {
     const animals = await db.animal.findMany();
@@ -25,19 +26,22 @@ export default async function Home() {
                 ) : (
                     <ul className="grid gap-4">
                         {animals.map((animal) => (
-                            <li key={animal.id}
-                                className="border border-gray-200 p-4 rounded-lg shadow-sm flex justify-between items-center bg-white text-black">
-                                <div>
-                                    <div className="font-bold text-lg">{animal.name}</div>
-                                    <div className="text-sm text-gray-600">{animal.species}</div>
-                                </div>
-                                <div className="text-xs text-gray-400">
-                                    Dodano: {animal.createdAt.toLocaleDateString()}
-                                </div>
-                                <div>
-                                    <FeedingForm animalId={animal.id}/>
-                                </div>
-                            </li>
+                            <Link href={`/animals/${animal.id}`} key={animal.id} className="block group">
+                                <li key={animal.id}
+                                    className="border border-gray-200 p-4 rounded-lg shadow-sm flex justify-between items-center bg-white text-black">
+                                    <div>
+                                        <div className="font-bold text-lg">{animal.name}</div>
+                                        <div className="text-sm text-gray-600">{animal.species}</div>
+                                    </div>
+                                    <div className="text-xs text-gray-400">
+                                        Dodano: {animal.createdAt.toLocaleDateString()}
+                                    </div>
+                                    <div>
+                                        <FeedingForm animalId={animal.id}/>
+                                    </div>
+
+                                </li>
+                            </Link>
                         ))}
                     </ul>
                 )}

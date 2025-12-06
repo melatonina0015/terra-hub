@@ -6,7 +6,18 @@ type AnimalFormData = {
 }
 
 export const createAnimal = async (formData: AnimalFormData) => {
-    const animal = await db.animal.create({ data: formData })
+    return db.animal.create({data: formData})
+}
 
-    console.log(animal)
+export const getAnimalById = async (animalId: string) => {
+    return db.animal.findUnique({
+        where: {
+            id: animalId
+        },
+        include: {
+            feedings: {
+                orderBy: {dueDate: "desc"}
+            }
+        }
+    });
 }
