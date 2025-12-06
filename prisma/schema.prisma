@@ -20,4 +20,14 @@ model Animal {
   birthDate DateTime?
   imageUrl String?
   createdAt DateTime @default(now())
+  feedings FeedingTask[]
+}
+
+model FeedingTask {
+  id String @id @default(uuid())
+  dueDate DateTime
+  isDone Boolean @default(false)
+
+  animalId String
+  animal Animal @relation(fields: [animalId], references: [id], onDelete: Cascade)
 }
