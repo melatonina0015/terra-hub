@@ -28,9 +28,9 @@ export const FeedingItem = ({task, animalId}: { task: any, animalId: string }) =
             }`}
         >
             <span>{optimisticToggle.dueDate.toLocaleDateString()}</span>
-            <span className="text-sm">
-                    {optimisticToggle.isDone ? "Wykonane" : "Do zrobienia"}
-            </span>
+            <div className="flex gap-2">
+                <span>{optimisticToggle.foodQuantity} {optimisticToggle.foodType}</span>
+            </div>
             <input type="checkbox" checked={optimisticToggle.isDone}
                    onChange={handleToggle}/>
         </li>
