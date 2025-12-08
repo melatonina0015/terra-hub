@@ -1,7 +1,7 @@
 'use server'
 
 import * as z from "zod";
-import {createFeedingTask} from "@/services/feeding-service";
+import {createFeedingTask, toggleFeedingTask} from "@/services/feeding-service";
 import {revalidatePath} from "next/cache";
 
 const today = new Date();
@@ -36,4 +36,9 @@ export const createFeedingTaskAction = async (prevState: State, formData: FormDa
     } catch (e) {
         return {message: "Błąd bazy danych."};
     }
+}
+
+export const toggleFeedingTaskAction = async (feedingTaskId: string, isDone: boolean, animalId: string) => {
+    await toggleFeedingTask(feedingTaskId, isDone);
+    revalidatePath(`/animals/${animalId}`);
 }

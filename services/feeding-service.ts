@@ -6,5 +6,12 @@ type FeedingTaskDTO = {
 }
 
 export const createFeedingTask = async (data: FeedingTaskDTO) => {
-    return await db.feedingTask.create({data: data});
+    return db.feedingTask.create({data: data});
 };
+
+export const toggleFeedingTask = async (feedingTaskId: string, isDone: boolean) => {
+    return db.feedingTask.update({
+        where: {id: feedingTaskId},
+        data: {isDone: isDone}
+    })
+}
