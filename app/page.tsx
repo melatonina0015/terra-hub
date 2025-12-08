@@ -1,13 +1,30 @@
 import {db} from "@/lib/db";
 import Link from "next/link";
+import {getUrgentFeedingTasks} from "@/services/feeding-service";
+import {FeedingItem} from "@/components/feeding-item";
 
 export default async function Home() {
     const animals = await db.animal.findMany();
-
+    const urgentFeedingTasks = await getUrgentFeedingTasks();
 
     return (
         <main className="max-w-6xl mx-auto p-8 font-sans">
-            <h1 className="text-3xl font-bold mb-8 text-emerald-700">Terra Hub 🦎</h1>
+            <div>
+                <h2 className="text-xl font-semibold">Zadania na dziś</h2>
+                {urgentFeedingTasks.length === 0 ? (
+                    <p className="text-gray-500 italic space-y-4">Brak zaplanowanych karmień.</p>
+                ) : (
+                    <ul className="my-4">
+                        {urgentFeedingTasks.map((task) => (
+                            <div key={task.id} className="grid grid-cols-[1fr_150px] items-center space-y-2">
+                                <FeedingItem task={task} animalId={task.animalId}/>
+                                <p className="ml-4 text-ellipsis">{task.animal.name}</p>
+                            </div>
+                        ))
+                        }
+                    </ul>
+                )}
+            </div>
 
             <div className="space-y-4">
                 <h2 className="text-xl font-semibold">Twoje Zwierzaki ({animals.length})</h2>

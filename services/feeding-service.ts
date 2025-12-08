@@ -15,3 +15,20 @@ export const toggleFeedingTask = async (feedingTaskId: string, isDone: boolean) 
         data: {isDone: isDone}
     })
 }
+
+export const getUrgentFeedingTasks = async () => {
+    return db.feedingTask.findMany({
+        where: {
+            dueDate: {
+                lte: new Date()
+            },
+            isDone: false
+        },
+        include: {
+            animal: true
+        },
+        orderBy: {
+            dueDate: "asc"
+        }
+    })
+}
