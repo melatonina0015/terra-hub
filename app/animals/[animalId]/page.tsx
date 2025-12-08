@@ -19,22 +19,15 @@ export default async function AnimalPage({params}: Props) {
     }
 
     return (
-        <div className="max-w-4xl mx-auto p-8">
+        <div className="max-w-full mx-auto p-8">
             <header className="mb-8 border-b pb-4">
                 <h1 className="text-4xl font-bold text-emerald-800">{animal.name}</h1>
                 <p className="text-xl text-gray-600">{animal.species}</p>
             </header>
 
             <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                    <div className="bg-white p-6 rounded-lg shadow-sm border mb-6">
-                        <h2 className="font-bold text-lg mb-4">Zaplanuj posiłek</h2>
-                        <FeedingForm animalId={animal.id}/>
-                    </div>
 
-                </div>
-
-                <div>
+                <div className="border-r pr-8">
                     <h2 className="font-bold text-lg mb-4">Historia Karmienia</h2>
 
                     {animal.feedings.length === 0 ? (
@@ -50,6 +43,13 @@ export default async function AnimalPage({params}: Props) {
                             ))}
                         </ul>
                     )}
+                </div>
+                <div>
+                    <div className="bg-white p-6 rounded-lg shadow-sm border mb-6">
+                        <h2 className="font-bold text-lg mb-4">Zaplanuj posiłek</h2>
+                        <FeedingForm animalId={animal.id}/>
+                    </div>
+
                 </div>
             </div>
         </div>
