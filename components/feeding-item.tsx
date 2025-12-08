@@ -23,7 +23,7 @@ export const FeedingItem = ({task, animalId}: { task: any, animalId: string }) =
 
     return (
         <li
-            className={`p-3 rounded border flex justify-between items-center ${
+            className={`p-3 rounded border flex justify-between items-center w-full ${
                 optimisticToggle.isDone ? "bg-gray-100 text-gray-400" : "bg-white"
             }`}
         >
