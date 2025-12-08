@@ -3,6 +3,8 @@ import {db} from "@/lib/db";
 type FeedingTaskDTO = {
     dueDate: Date;
     animalId: string;
+    foodType?: string;
+    foodQuantity?: number | null;
 }
 
 export const createFeedingTask = async (data: FeedingTaskDTO) => {

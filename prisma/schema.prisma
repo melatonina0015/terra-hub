@@ -10,24 +10,26 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url = env("DATABASE_URL")
+  url      = env("DATABASE_URL")
 }
 
 model Animal {
-  id String @id @default(uuid())
-  name String
-  species String
+  id        String        @id @default(uuid())
+  name      String
+  species   String
   birthDate DateTime?
-  imageUrl String?
-  createdAt DateTime @default(now())
-  feedings FeedingTask[]
+  imageUrl  String?
+  createdAt DateTime      @default(now())
+  feedings  FeedingTask[]
 }
 
 model FeedingTask {
-  id String @id @default(uuid())
-  dueDate DateTime
-  isDone Boolean @default(false)
+  id           String   @id @default(uuid())
+  dueDate      DateTime
+  isDone       Boolean  @default(false)
+  foodType     String?
+  foodQuantity Int?
 
   animalId String
-  animal Animal @relation(fields: [animalId], references: [id], onDelete: Cascade)
+  animal   Animal @relation(fields: [animalId], references: [id], onDelete: Cascade)
 }
