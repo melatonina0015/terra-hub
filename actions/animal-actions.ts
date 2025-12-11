@@ -39,6 +39,8 @@ export const createAnimalAction = async (prevState: State, formData: FormData): 
         revalidatePath("/");
         return {message: "Dodano zwierzę!", errors: {}};
     } catch (e) {
+        console.error("Database error: ", e);
         return {message: "Błąd bazy danych."};
+
     }
 };

@@ -50,6 +50,7 @@ export const createFeedingTaskAction = async (prevState: FeedingState, formData:
 
         return {message: "Dodano zadanie!", errors: {}};
     } catch (e) {
+        console.error("Database error: ", e);
         return {message: "Błąd bazy danych."};
     }
 }

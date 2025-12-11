@@ -1,7 +1,10 @@
+export const dynamic = 'force-dynamic';
+
 import {db} from "@/lib/db";
 import Link from "next/link";
 import {getUrgentFeedingTasks} from "@/services/feeding-service";
 import {FeedingItem} from "@/components/feeding-item";
+import {FeedingTaskWithAnimal} from "@/types";
 
 export default async function Home() {
     const animals = await db.animal.findMany();
@@ -15,7 +18,7 @@ export default async function Home() {
                     <p className="text-gray-500 italic space-y-4">Brak zaplanowanych karmień.</p>
                 ) : (
                     <ul className="my-4">
-                        {urgentFeedingTasks.map((task) => (
+                        {urgentFeedingTasks.map((task: FeedingTaskWithAnimal) => (
                             <div key={task.id} className="grid grid-cols-[1fr_150px] items-center space-y-2">
                                 <FeedingItem task={task} animalId={task.animalId}/>
                                 <p className="ml-4 text-ellipsis">{task.animal.name}</p>

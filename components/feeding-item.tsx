@@ -2,9 +2,11 @@
 
 import {toggleFeedingTaskAction} from "@/actions/feeding-action";
 import {startTransition, useOptimistic} from "react";
+import {FeedingTask} from "@/types";
 
-export const FeedingItem = ({task, animalId}: { task: any, animalId: string }) => {
-    const [optimisticToggle, addOptimisticToggle] = useOptimistic(
+
+export const FeedingItem = ({task, animalId}: { task: FeedingTask, animalId: string }) => {
+    const [optimisticToggle, addOptimisticToggle] = useOptimistic<FeedingTask, boolean>(
         task,
         (currState, newValue) => {
             return {...currState, isDone: newValue};
