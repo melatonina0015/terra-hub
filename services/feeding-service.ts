@@ -34,3 +34,23 @@ export const getUrgentFeedingTasks = async () => {
         }
     })
 }
+
+export const getCompletedTodayTasks = async () => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    return db.feedingTask.findMany({
+        where: {
+            updatedAt: {
+                gte: today,
+            },
+            isDone: true
+        },
+        include: {
+            animal: true
+        },
+        orderBy: {
+            updatedAt: "desc"
+        }
+    })
+}
